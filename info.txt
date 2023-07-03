@@ -1,0 +1,9 @@
+apt install lxc snap snapd
+systemctl enable snapd
+snap install lxd
+lxc launch ubuntu:20.04 ubuntu
+security.nesting: "true"
+lxc config edit ubuntu
+lxc config device add mycontainer myport80 proxy listen=tcp:0.0.0.0:80 connect=tcp:127.0.0.1:80
+lxc config device remove mycontainer myport80
+
